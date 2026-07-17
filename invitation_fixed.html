@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Birthday Party — Белла, 19.08.2026</title>
+<meta name="theme-color" content="#0b0c10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15181c;
+    --cream:#f4f1ea;
+    --paper:#faf8f3;
+    --muted:#5c6a76;
+    --red:#8a2e2e;
+    --blue:#b9d3e6;
+    --line: rgba(21,24,28,0.16);
+    --shadow: 0 18px 46px rgba(21,24,28,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Cormorant Garamond', serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important; scroll-behavior:auto !important;}
+  }
+
+  .script{ font-family:'Mrs Saint Delafield', cursive; font-weight:400; }
+  .ui{ font-family:'Poppins', sans-serif; }
+  .eyebrow{
+    font-family:'Poppins', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:11.5px;
+    color:var(--muted);
+    font-weight:500;
+  }
+
+  section{
+    position:relative;
+    padding: 90px 24px;
+    max-width: 680px;
+    margin:0 auto;
+  }
+
+  /* ===== FIX: Всегда видно по умолчанию, анимация — enhancement ===== */
+  .reveal{ 
+    opacity: 1; 
+    transform: none; 
+    transition: opacity 0.9s ease, transform 0.9s ease; 
+  }
+  .reveal.js-animated{ 
+    opacity: 0; 
+    transform: translateY(26px); 
+  }
+  .reveal.js-animated.is-visible{ 
+    opacity: 1; 
+    transform: none; 
+  }
+
+  .dots{
+    border:none;
+    border-top: 1px dotted rgba(21,24,28,0.35);
+    width:100%;
+    max-width:680px;
+    margin: 0 auto;
+  }
+
+  .center{ text-align:center; }
+
+  /* ================= HERO ================= */
+  .hero{
+    min-height:100vh;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 60px 24px;
+    background: linear-gradient(180deg, #0b0c10 0%, #263242 40%, #55677c 75%, #8797af 100%);
+    color:#fff;
+  }
+  .hero-my{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size: clamp(30px, 6vw, 42px);
+    letter-spacing:0.05em;
+    color:#f4f1ea;
+  }
+  .hero-birthday{
+    font-family:'Mrs Saint Delafield', cursive;
+    font-size: clamp(68px, 14vw, 128px);
+    line-height:1;
+    color:#b5504f;
+    margin: 4px 0;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.35);
+  }
+  .hero-party{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size: clamp(30px, 6vw, 42px);
+    color:#f4f1ea;
+  }
+  .hero-date{
+    margin-top:34px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size: clamp(20px, 3vw, 26px);
+    letter-spacing:0.12em;
+    color:#e7e9ec;
+  }
+  .scroll-cue{
+    position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+    color: rgba(255,255,255,0.55);
+    font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
+    font-family:'Poppins', sans-serif;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .scroll-cue span.line{ width:1px; height:32px; background: rgba(255,255,255,0.45); animation: scrolldown 1.8s ease-in-out infinite; }
+  @keyframes scrolldown{ 0%{transform:scaleY(0); transform-origin:top;} 45%{transform:scaleY(1); transform-origin:top;} 55%{transform:scaleY(1); transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;} }
+
+  /* ================= HEADINGS ================= */
+  h2.section-title{
+    font-family:'Mrs Saint Delafield', cursive;
+    font-weight:400;
+    font-size: clamp(40px, 7vw, 58px);
+    text-align:center;
+    margin: 6px 0 4px;
+    color:var(--ink);
+    line-height:1.05;
+  }
+  .section-note{
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--muted);
+    font-size:18px;
+    max-width:480px;
+    margin: 4px auto 0;
+  }
+
+  /* ================= GREETING / AMENITIES ================= */
+  .greeting-body{ font-size:19px; margin-top:26px; }
+  .greeting-body p{ margin: 0 0 18px; }
+  .amenity-list{
+    list-style:none;
+    padding:0;
+    margin: 22px 0;
+  }
+  .amenity-list li{
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--line);
+    font-size:19px;
+  }
+  .amenity-list li:before{
+    content:"·"; color:var(--red); margin-right:10px; font-weight:700;
+  }
+  .packing-title{
+    font-family:'Poppins', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:13px;
+    font-weight:600;
+    margin: 30px 0 12px;
+    color:var(--ink);
+  }
+  .packing-list{ list-style:none; padding:0; margin:0; }
+  .packing-list li{ font-size:18px; margin-bottom:6px; }
+  .packing-list li:before{ content:"— "; color:var(--muted); }
+
+  /* ================= TIMELINE ================= */
+  .timeline{ margin-top: 44px; position:relative; padding-left: 4px; }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left: 17px; top: 8px; bottom: 8px;
+    width:1px;
+    background: var(--line);
+  }
+  .tl-item{ position:relative; padding: 0 0 42px 54px; }
+  .tl-item:last-child{ padding-bottom:4px; }
+  .tl-dot{
+    position:absolute; left: 11px; top:5px;
+    width:13px; height:13px; border-radius:50%;
+    background: var(--paper); border: 2px solid var(--ink);
+  }
+  .tl-time{
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-size:30px; color:var(--ink);
+  }
+  .tl-date{ font-family:'Poppins',sans-serif; font-size:12px; letter-spacing:0.08em; color:var(--muted); margin-top:2px;}
+  .tl-title{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:20px; margin: 6px 0 2px; }
+  .tl-note{ color:var(--muted); font-style:italic; font-size:16px; }
+
+  /* ================= VILLA ================= */
+  .villa-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    box-shadow: var(--shadow);
+    margin-top:40px;
+    overflow:hidden;
+    border-radius:2px;
+  }
+  .villa-card img{ display:block; width:100%; height:auto; }
+  .villa-body{ padding: 24px 28px 30px; text-align:center; }
+  .villa-kicker{
+    font-family:'Poppins', sans-serif; text-transform:uppercase; letter-spacing:0.18em;
+    font-size:11px; color:var(--muted);
+  }
+  .villa-name{
+    font-family:'Mrs Saint Delafield', cursive; font-size:34px; margin: 6px 0 4px; color:var(--ink);
+  }
+  .villa-addr{ color:var(--muted); font-family:'Cormorant Garamond', serif; font-style:italic; font-size:18px; }
+
+  /* ================= DRESS CODE ================= */
+  .swatches{ display:flex; justify-content:center; gap:22px; margin: 36px 0 26px; flex-wrap:wrap; }
+  .swatch{ text-align:center; }
+  .swatch i{
+    display:block; width:50px; height:50px; border-radius:50%; margin: 0 auto 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .swatch span{ font-family:'Poppins', sans-serif; font-size:11px; letter-spacing:0.06em; color:var(--muted); text-transform:uppercase; }
+  .sw-blue{ background:#b9d3e6; }
+  .sw-olive{ background:#93996f; }
+  .sw-white{ background:#faf8f3; }
+  .sw-black{ background:#1c1c1c; }
+
+  /* ================= MAP ================= */
+  .map-card{
+    margin-top:36px;
+    border:1px solid var(--line);
+    background: var(--paper);
+    box-shadow: var(--shadow);
+    overflow:hidden;
+    border-radius:2px;
+  }
+  .map-visual{
+    position:relative; height:220px; overflow:hidden;
+    background:
+      repeating-linear-gradient(0deg, rgba(21,24,28,0.06) 0 1px, transparent 1px 30px),
+      repeating-linear-gradient(90deg, rgba(21,24,28,0.06) 0 1px, transparent 1px 30px),
+      linear-gradient(135deg, #eef2ee 0%, #dfe9f0 100%);
+  }
+  .map-river{
+    position:absolute; right:-15%; top:-10%; width:65%; height:130%;
+    background: linear-gradient(160deg, #cfe0ea, #b9d3e6);
+    transform: rotate(16deg);
+  }
+  .map-pin{ position:absolute; left:46%; top:42%; width:26px; height:26px; }
+  .map-pin svg{ width:100%; height:100%; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.25)); }
+  .map-foot{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding: 18px 24px; flex-wrap:wrap;
+  }
+  .map-addr{ font-family:'Cormorant Garamond', serif; font-size:17px; color:var(--muted); }
+  .map-addr b{ color:var(--ink); font-weight:600; }
+
+  /* ================= BUTTONS ================= */
+  .btn{
+    display:inline-block;
+    font-family:'Poppins', sans-serif;
+    font-weight:500;
+    font-size:16px;
+    text-decoration:none;
+    padding: 15px 40px;
+    border-radius:40px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-dark{ background:var(--ink); color:#fff; }
+  .btn-dark:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(21,24,28,0.30); }
+  .btn-ghost{ border:1px solid var(--ink); color:var(--ink); background:transparent; font-size:14px; padding:12px 26px; border-radius:30px; white-space:normal; text-align:center; }
+  .btn-ghost:hover{ background:var(--ink); color:#fff; }
+
+  /* ================= RSVP ================= */
+  .rsvp{ text-align:center; }
+  .rsvp-note{
+    font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--muted);
+    margin: 4px 0 34px; font-size:19px;
+  }
+  .rsvp-ps{ margin-top:38px; font-family:'Mrs Saint Delafield', cursive; font-size:26px; color:var(--ink); }
+  .rsvp-contact{
+    margin-top:12px; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:15px; color:var(--muted);
+  }
+
+  @media (max-width: 520px){
+    section{ padding: 66px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div class="hero-my">My</div>
+  <div class="hero-birthday">Birthday</div>
+  <div class="hero-party">Party</div>
+  <div class="hero-date">19.08.2026</div>
+  <div class="scroll-cue"><span class="line"></span>подробнее</div>
+</div>
+
+<!-- ================= GREETING / AMENITIES ================= -->
+<section class="reveal">
+  <h2 class="section-title">Дорогие друзья!</h2>
+  <div class="greeting-body center">
+    <p>Приглашаю вас отпраздновать моё 18-летие с размахом!<br>Что вас ждёт из развлечений:</p>
+  </div>
+  <ul class="amenity-list">
+    <li>3 бассейна</li>
+    <li>Баня + сауна</li>
+    <li>Спа-зона</li>
+    <li>Кальянная</li>
+    <li>Кинотеатр</li>
+    <li>2 бильярдных стола (русский / американка)</li>
+    <li>Настольный теннис</li>
+  </ul>
+  <div class="packing-title center">Что брать с собой всем</div>
+  <ul class="packing-list center">
+    <li>Девочкам — купальник</li>
+    <li>Парням — плавки</li>
+    <li>Всем — сменную одежду</li>
+  </ul>
+</section>
+
+<hr class="dots">
+
+<!-- ================= PROGRAMMA ================= -->
+<section class="reveal">
+  <h2 class="section-title">Программа основных событий</h2>
+  <p class="section-note">Среда, 19 августа 2026</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">13:30</div>
+      <div class="tl-date">19.08</div>
+      <div class="tl-title">Сбор гостей</div>
+      <div class="tl-note">и отправление в путь</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">15:00</div>
+      <div class="tl-date">19.08</div>
+      <div class="tl-title">Начало</div>
+      <div class="tl-note">*просьба без опозданий</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">12:00</div>
+      <div class="tl-date">20.08</div>
+      <div class="tl-title">Завершение</div>
+      <div class="tl-note"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="dots">
+
+<!-- ================= VILLA ================= -->
+<section class="reveal">
+  <h2 class="section-title">Подарите мне свою улыбку</h2>
+  <p class="section-note">и возьмите хорошее настроение</p>
+
+  <div class="villa-card">
+    <img src="123.jpg" alt="Вилла «Пахрапарк»" onerror="this.style.display='none'">
+    <div class="villa-body">
+      <div class="villa-kicker">Премиальный гостевой дом</div>
+      <div class="villa-name">Вилла «Пахрапарк»</div>
+      <div class="villa-addr">Адрес: г. Троицк, ул. Южная, 2</div>
+    </div>
+  </div>
+</section>
+
+<hr class="dots">
+
+<!-- ================= HOW TO GET THERE ================= -->
+<section class="reveal">
+  <h2 class="section-title">Как добраться</h2>
+  <p class="section-note">*для вашего удобства я оставила координаты локации на карте</p>
+
+  <div class="map-card">
+    <div class="map-visual">
+      <div class="map-river"></div>
+      <div class="map-pin">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C6.9 0 3 4 3 9c0 6.8 9 15 9 15s9-8.2 9-15c0-5-3.9-9-9-9z" fill="#000000"/>
+          <circle cx="12" cy="9" r="3.4" fill="#faf8f3"/>
+        </svg>
+      </div>
+    </div>
+    <div class="map-foot">
+      <div class="map-addr">55.45478, 37.29857</div>
+      <a class="btn btn-ghost" href="https://yandex.ru/maps/?pt=37.29857,55.45478&z=16&l=map" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+    </div>
+  </div>
+</section>
+
+<hr class="dots">
+
+<!-- ================= DRESS CODE ================= -->
+<section class="reveal">
+  <h2 class="section-title">Дресс-код</h2>
+  <div class="swatches">
+    <div class="swatch"><i class="sw-blue"></i><span>Голубой</span></div>
+    <div class="swatch"><i class="sw-olive"></i><span>Оливковый</span></div>
+    <div class="swatch"><i class="sw-white"></i><span>Белый</span></div>
+    <div class="swatch"><i class="sw-black"></i><span>Чёрный</span></div>
+  </div>
+  <p class="section-note">желательно голубые, оливковые, белые и чёрные оттенки (для того чтобы получились классные фотографии)</p>
+</section>
+
+<hr class="dots">
+
+<!-- ================= RSVP ================= -->
+<section class="reveal rsvp">
+  <h2 class="section-title">Ваше присутствие</h2>
+  <p class="rsvp-note">*буду очень рада видеть вас!</p>
+
+  <a class="btn btn-dark" href="https://t.me/+tjVZXf_oMeY2N2My" target="_blank" rel="noopener">Подтвердить</a>
+
+  <div class="rsvp-ps">PS: Бэлла</div>
+  <p class="rsvp-contact">По все доп. вопросом обращайтесь в личку)</p>
+</section>
+
+<script>
+  // ===== FIX: Progressive enhancement =====
+  // Сначала проверяем, работает ли IntersectionObserver нормально
+  var reveals = document.querySelectorAll('.reveal');
+  var observerWorks = false;
+
+  function showAll() {
+    reveals.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  // Если JS включен — добавляем класс для анимации (но контент уже виден по умолчанию)
+  reveals.forEach(function(el){ el.classList.add('js-animated'); });
+
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.01, rootMargin: '0px 0px -30px 0px' });
+
+    reveals.forEach(function(el){ io.observe(el); });
+
+    // Fallback: если Observer не сработал за 3 секунды — показываем всё
+    setTimeout(function(){
+      var anyHidden = Array.from(reveals).some(function(el){ 
+        return !el.classList.contains('is-visible'); 
+      });
+      if(anyHidden) showAll();
+    }, 3000);
+
+  } else {
+    // Старые браузеры — показываем сразу
+    showAll();
+  }
+</script>
+
+</body>
+</html>
