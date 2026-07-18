@@ -84,51 +84,39 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-end;
     text-align:center;
     padding: 60px 24px;
-    background: linear-gradient(180deg, #0b0c10 0%, #263242 40%, #55677c 75%, #8797af 100%);
-    color:#fff;
+    background: url('1235.jpg') center center / cover no-repeat;
+    color:var(--ink);
+    position:relative;
   }
-  .hero-my{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-weight:400;
-    font-size: clamp(30px, 6vw, 42px);
-    letter-spacing:0.05em;
-    color:#f4f1ea;
-  }
-  .hero-birthday{
-    font-family:'Mrs Saint Delafield', cursive;
-    font-size: clamp(68px, 14vw, 128px);
-    line-height:1;
-    color:#b5504f;
-    margin: 4px 0;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.35);
-  }
-  .hero-party{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-weight:400;
-    font-size: clamp(30px, 6vw, 42px);
-    color:#f4f1ea;
+  .hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background: linear-gradient(to top, rgba(244,241,234,0.85) 0%, rgba(244,241,234,0.2) 40%, transparent 70%);
+    pointer-events:none;
   }
   .hero-date{
-    margin-top:34px;
+    position:relative;
+    z-index:1;
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
-    font-size: clamp(20px, 3vw, 26px);
-    letter-spacing:0.12em;
-    color:#e7e9ec;
+    font-size: clamp(18px, 3.5vw, 24px);
+    letter-spacing:0.08em;
+    color:var(--ink);
+    margin-bottom:20px;
   }
   .scroll-cue{
     position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
-    color: rgba(255,255,255,0.55);
+    color: rgba(21,24,28,0.45);
     font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
     font-family:'Poppins', sans-serif;
     display:flex; flex-direction:column; align-items:center; gap:8px;
+    z-index:1;
   }
-  .scroll-cue span.line{ width:1px; height:32px; background: rgba(255,255,255,0.45); animation: scrolldown 1.8s ease-in-out infinite; }
+  .scroll-cue span.line{ width:1px; height:32px; background: rgba(21,24,28,0.35); animation: scrolldown 1.8s ease-in-out infinite; }
   @keyframes scrolldown{ 0%{transform:scaleY(0); transform-origin:top;} 45%{transform:scaleY(1); transform-origin:top;} 55%{transform:scaleY(1); transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;} }
 
   /* ================= HEADINGS ================= */
@@ -154,6 +142,15 @@
   /* ================= GREETING / AMENITIES ================= */
   .greeting-body{ font-size:19px; margin-top:26px; }
   .greeting-body p{ margin: 0 0 18px; }
+  .greeting-body .alert{
+    font-family:'Poppins', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:12px;
+    font-weight:600;
+    color:var(--red);
+    margin: 0 0 12px;
+  }
   .amenity-list{
     list-style:none;
     padding:0;
@@ -202,6 +199,7 @@
   .tl-date{ font-family:'Poppins',sans-serif; font-size:12px; letter-spacing:0.08em; color:var(--muted); margin-top:2px;}
   .tl-title{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:20px; margin: 6px 0 2px; }
   .tl-note{ color:var(--muted); font-style:italic; font-size:16px; }
+  .tl-note-small{ color:var(--muted); font-style:italic; font-size:14px; margin-top:4px; }
 
   /* ================= VILLA ================= */
   .villa-card{
@@ -288,9 +286,30 @@
     font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--muted);
     margin: 4px 0 34px; font-size:19px;
   }
+  .rsvp-note .deadline{
+    display:block;
+    margin-top:10px;
+    font-family:'Poppins', sans-serif;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.06em;
+    color:var(--red);
+    text-transform:uppercase;
+  }
   .rsvp-ps{ margin-top:38px; font-family:'Mrs Saint Delafield', cursive; font-size:26px; color:var(--ink); }
   .rsvp-contact{
     margin-top:12px; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:15px; color:var(--muted);
+  }
+  .rsvp-photo-note{
+    margin-top:20px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:16px;
+    color:var(--muted);
+    max-width:440px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.5;
   }
 
   @media (max-width: 520px){
@@ -302,10 +321,7 @@
 
 <!-- ================= HERO ================= -->
 <div class="hero">
-  <div class="hero-my">My</div>
-  <div class="hero-birthday">Birthday</div>
-  <div class="hero-party">Party</div>
-  <div class="hero-date">19.08.2026</div>
+  <div class="hero-date">The birthday will be celebrated 19.08.2026</div>
   <div class="scroll-cue"><span class="line"></span>подробнее</div>
 </div>
 
@@ -313,6 +329,7 @@
 <section class="reveal">
   <h2 class="section-title">Дорогие друзья!</h2>
   <div class="greeting-body center">
+    <p class="alert">Внимательно прочитайте всю информацию!</p>
     <p>Приглашаю вас отпраздновать моё 18-летие с размахом!<br>Что вас ждёт из развлечений:</p>
   </div>
   <ul class="amenity-list">
@@ -353,6 +370,7 @@
       <div class="tl-date">19.08</div>
       <div class="tl-title">Начало</div>
       <div class="tl-note">*просьба без опозданий</div>
+      <div class="tl-note-small">будут зачитаны правила пребывания, в присутствии хозяина дома</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
@@ -360,6 +378,7 @@
       <div class="tl-date">20.08</div>
       <div class="tl-title">Завершение</div>
       <div class="tl-note"></div>
+      <div class="tl-note-small">все вместе убираемся, собираемся и выезжаем</div>
     </div>
   </div>
 </section>
@@ -424,25 +443,26 @@
 <!-- ================= RSVP ================= -->
 <section class="reveal rsvp">
   <h2 class="section-title">Ваше присутствие</h2>
-  <p class="rsvp-note">*буду очень рада видеть вас!</p>
+  <p class="rsvp-note">
+    *буду очень рада видеть вас!
+    <span class="deadline">Большая просьба подтвердить ваше присутствие до 5–10 августа.<br>Переходите в группу, где будет указана ещё информация, но уже ближе к дню празднования.</span>
+  </p>
 
   <a class="btn btn-dark" href="https://t.me/+tjVZXf_oMeY2N2My" target="_blank" rel="noopener">Подтвердить</a>
 
   <div class="rsvp-ps">PS: Бэлла</div>
-  <p class="rsvp-contact">По все доп. вопросом обращайтесь в личку)</p>
+  <p class="rsvp-contact">По всем доп. вопросам обращайтесь в личку)</p>
+
+  <p class="rsvp-photo-note">Пожалуйста, у кого есть — возьмите фотки обычные, а также у кого есть Instax (картриджи я куплю)</p>
 </section>
 
 <script>
-  // ===== FIX: Progressive enhancement =====
-  // Сначала проверяем, работает ли IntersectionObserver нормально
   var reveals = document.querySelectorAll('.reveal');
-  var observerWorks = false;
 
   function showAll() {
     reveals.forEach(function(el){ el.classList.add('is-visible'); });
   }
 
-  // Если JS включен — добавляем класс для анимации (но контент уже виден по умолчанию)
   reveals.forEach(function(el){ el.classList.add('js-animated'); });
 
   if('IntersectionObserver' in window){
@@ -457,7 +477,6 @@
 
     reveals.forEach(function(el){ io.observe(el); });
 
-    // Fallback: если Observer не сработал за 3 секунды — показываем всё
     setTimeout(function(){
       var anyHidden = Array.from(reveals).some(function(el){ 
         return !el.classList.contains('is-visible'); 
@@ -466,7 +485,6 @@
     }, 3000);
 
   } else {
-    // Старые браузеры — показываем сразу
     showAll();
   }
 </script>
